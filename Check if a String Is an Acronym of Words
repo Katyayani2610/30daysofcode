@@ -1,0 +1,16 @@
+https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/
+
+class Solution {
+public:
+    bool isAcronym(vector<string>& words, string s) {
+        string res ="";
+        //for each word in the wwords array , we will be taking it's first letter and forming acronym
+
+        for(auto& w:words){
+            res+=w[0];
+
+        }
+        //at last we will check if our acronym matches with 's' which is the give acronym
+        return res== s;
+    }
+};
