@@ -1,0 +1,54 @@
+
+https://practice.geeksforgeeks.org/problems/first-and-last-occurrences-of-x3116/1
+
+class Solution
+{
+    public:
+    vector<int> find(int arr[], int n , int x )
+    
+        {
+        int l=0, h=n-1;
+        int s = -1, e = -1;
+        
+        while(l<=h){
+            int m = (h+l)/2;
+            if(arr[m]<x){
+                l = m+1;
+            }
+            else if(arr[m]>x){
+                h = m - 1;
+            }
+            else{
+                s = m;
+                h = m - 1;
+            }
+        }
+        
+        l = 0, h = n-1;
+        
+        while(l<=h){
+            int m = (h+l)/2;
+            if(arr[m]<x){
+                l = m+1;
+            }
+            else if(arr[m]>x){
+                h = m - 1;
+            }
+            else{
+                e = m;
+                l = m + 1;
+            }
+        }
+        
+        if(s>0 && e<0){
+            return {s,s};
+        }
+        else if(s<0 && e>0){
+            return {e,e};
+        }
+        else{
+            return {s,e};
+        }
+    
+    }
+};
