@@ -1,0 +1,44 @@
+ https://practice.geeksforgeeks.org/problems/find-all-four-sum-numbers1732/1
+
+
+ int n=arr.size();
+        vector<vector<int>> ans;
+        set<vector<int>> mp;
+        sort(arr.begin(),arr.end());
+        
+        for(int i=0;i<n-3;i++)
+        {
+            int sum=arr[i];
+            vector<int> vec;
+            vec.push_back(arr[i]);
+            for(int j=i+1;j<n-2;j++)
+            {
+                sum+=arr[j];
+                vec.push_back(arr[j]);
+                
+                int left=j+1,right=n-1;
+                while(left<right)
+                {
+                    int x=arr[left]+arr[right];
+                    if((x+sum)==k){
+                        vec.push_back(arr[left]);
+                        vec.push_back(arr[right]);
+                        if(mp.find(vec)==mp.end()){
+                            mp.insert(vec);
+                            ans.push_back(vec);
+                        }
+                        vec.pop_back();
+                        vec.pop_back();
+                        left++;
+                        right--;
+                    }
+                    else if((x+sum)>k)
+                        right--;
+                    else
+                        left++;
+                }
+                sum-=arr[j];
+                vec.pop_back();
+            }
+        }
+        return ans;
