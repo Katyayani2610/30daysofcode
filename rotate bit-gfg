@@ -1,0 +1,30 @@
+https://practice.geeksforgeeks.org/problems/rotate-bits4524/1
+
+class Solution
+{
+  public:
+        vector <int> rotate (int n, int d)
+        {
+            //code here.
+              vector<int> v,v1,v2;
+            while(n){
+                v.push_back(n%2);
+                n/=2;
+            }
+            d%=16;
+            for(int i=v.size();i<16;i++) v.push_back(0);
+            reverse(v.begin(),v.end());
+            for(int i=d;i<v.size();i++) v1.push_back(v[i]);
+            for(int i=0;i<d;i++) v1.push_back(v[i]);
+            for(int i=v.size()-d;i<v.size();i++) v2.push_back(v[i]);
+            for(int i=0;i<v.size()-d;i++) v2.push_back(v[i]);
+            int sum1=0,sum2=0,j=0;
+            for(int i=15;i>=0;i--){
+                if(v1[i]==1) sum1+=pow(2,j);
+                if(v2[i]==1) sum2+=pow(2,j);
+                j++;
+            }
+            return {sum1,sum2};
+        
+        }
+};
