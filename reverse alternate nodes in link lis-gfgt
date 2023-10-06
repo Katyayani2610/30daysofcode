@@ -1,0 +1,53 @@
+/https://practice.geeksforgeeks.org/problems/given-a-linked-list-reverse-alternate-nodes-and-append-at-the-end/1
+
+/*
+  reverse alternate nodes and append at the end
+  The input list will have at least one element  
+  Node is defined as 
+  struct Node
+  {
+      int data;
+      struct Node *next;
+    
+      Node(int x){
+        data = x;
+        next = NULL;
+      }
+    
+   };
+
+*/
+class Solution
+{
+    public:
+     Node* rev(Node* head)
+    {
+    Node* prev=NULL;
+    Node* cur=head;
+    Node* next=NULL;
+    while(cur!=NULL)
+    {
+        next=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=next;
+    }
+    return prev;
+    }
+    void rearrange(struct Node *odd)
+    {
+        Node* prev=odd;
+        Node* head=odd->next;
+        Node* cur=odd->next;
+        while(cur!=NULL && cur->next!=NULL)
+        {
+            Node* temp=cur->next;
+            cur->next=cur->next->next;
+            prev->next=temp;
+            prev=prev->next;
+            cur=cur->next;
+        }
+        head=rev(head);
+        prev->next=head;
+    }
+};
