@@ -1,0 +1,40 @@
+//https://practice.geeksforgeeks.org/problems/insert-in-a-sorted-list/1
+/*
+structure of the node of the list is as
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+class Solution{
+  public:
+    // Should return head of the modified linked list
+    Node *sortedInsert(struct Node* head, int data) {
+      bool flag=false;
+      Node*curr=head;
+      Node*ans=new Node(0);
+      Node*final=ans;
+      while(curr!=NULL){
+          if(curr->data>data && !flag){
+              ans->next=new Node(data);
+              ans=ans->next;
+              flag=true;
+            }
+          ans->next=curr;
+          ans=ans->next;
+          curr=curr->next;
+      }
+      if(!flag){
+          ans->next=new Node(data);
+      }
+      return final->next;
+     // Code here
+    }
+};
