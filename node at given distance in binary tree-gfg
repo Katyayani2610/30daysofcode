@@ -1,0 +1,77 @@
+//https://practice.geeksforgeeks.org/problems/nodes-at-given-distance-in-binary-tree/1
+
+/* A binary Tree node
+struct Node
+{
+    int data;
+    struct Node *left, *right;
+};
+*/
+
+class Solution
+{
+private:
+    vector<int> result;
+
+    // Helper function to perform DFS to find target node and calculate distance
+    int findTarget(Node* root, int target, int k)
+    {
+        if (!root)
+            return -1;
+
+        if (root->data == target)
+        {
+            findKNodesDown(root, k);
+            return 0;
+        }
+
+        int leftDistance = findTarget(root->left, target, k);
+        if (leftDistance != -1)
+        {
+            if (leftDistance + 1 == k)
+                result.push_back(root->data);
+            else
+                findKNodesDown(root->right, k - leftDistance - 2);
+            return 1 + leftDistance;
+        }
+
+        int rightDistance = findTarget(root->right, target, k);
+        if (rightDistance != -1)
+        {
+            if (rightDistance + 1 == k)
+                result.push_back(root->data);
+            else
+                findKNodesDown(root->left, k - rightDistance - 2);
+            return 1 + rightDistance;
+        }
+
+        return -1;
+    }
+
+    // Helper function to find nodes at distance k from a given node
+    void findKNodesDown(Node* root, int k)
+    {
+        if (!root || k < 0)
+            return;
+
+        if (k == 0)
+        {
+            result.push_back(root->data);
+            return;
+        }
+
+        findKNodesDown(root->left, k - 1);
+        findKNodesDown(root->right, k - 1);
+    }
+
+public:
+    vector<int> KDistanceNodes(Node* root, int target, int k)
+    {
+        result.clear();
+        findTarget(root, target, k);
+        sort(result.begin(), result.end()); // Sorting the result in ascending order
+        return result;
+        
+    }
+};
+
