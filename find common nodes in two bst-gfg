@@ -1,0 +1,48 @@
+
+
+class Solution
+{
+    public:
+    //Function to find the nodes that are common in both BST. 
+    vector <int> findCommon(Node *root1, Node *root2)
+    {
+     //Your code here
+      vector<int> ans;
+    stack<Node*> st1;
+    stack<Node*> st2;
+    while(true){
+        if(root1){
+            st1.push(root1);
+            root1= root1->left;
+        }
+        else if(root2){
+            st2.push(root2);
+            root2 = root2->left;
+        }
+        else if(!st1.empty() && !st2.empty()){
+            Node* r1 = st1.top();
+            Node* r2 = st2.top();
+            if(r1->data==r2->data) {
+                ans.push_back(r1->data);
+                st1.pop();
+                st2.pop();
+                root1 = r1->right;
+                root2 = r2->right;
+            }
+            else if(r1->data < r2->data){
+                st1.pop();
+                root1 = r1->right;
+                root2 = NULL;
+            }
+            else{
+                st2.pop();
+                root2 = r2->right;
+                root1 = NULL;
+            }
+        }
+        else break;
+    }
+    return ans;
+    }
+};
+
