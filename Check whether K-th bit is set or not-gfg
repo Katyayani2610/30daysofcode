@@ -1,0 +1,22 @@
+//User function Template for C++
+
+
+class Solution
+{
+    public:
+    // Function to check if Kth bit is set or not.
+    bool checkKthBit(int n, int k)
+    {
+        // Your code here
+        // It can be a one liner logic!! Think of it!!
+        /*
+        -> Example ->
+         n=5 , k=3;
+         -> Left Shif 5 by 3
+             5 => 101 >>3 ->  001;
+             then , (001)&(001) == 1;
+             hence return true;
+         */
+         return ((n>>k)&1)==1;  
+    }
+};
