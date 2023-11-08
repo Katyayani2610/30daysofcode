@@ -1,0 +1,18 @@
+//https://www.geeksforgeeks.org/problems/print-matrix-in-snake-pattern-1587115621/1
+
+class Solution
+{   
+    public:
+    //Function to return list of integers visited in snake pattern in matrix.
+      vector<int> snakePattern(vector<vector<int>> m)
+    {   
+        bool flag = false;
+        vector<int> ans;
+        for(auto &i : m) {
+            if(flag) reverse(i.begin(),i.end());
+            for(auto &j : i) ans.push_back(j);
+            flag ^= 1;
+        }
+        return ans;
+    }
+};
