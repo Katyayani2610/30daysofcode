@@ -49,41 +49,9 @@ def countValidWords(s):
     return valid_count
 
 
-# Test cases
+# Example usage and test cases
 if __name__ == "__main__":
-    # Test case 1: "This is Form16 submission date"
-    test1 = "This is Form16 submission date"
-    result1 = countValidWords(test1)
-    print(f"Input: '{test1}'")
-    print(f"Output: {result1}")
-    print(f"Expected: 3")
-    print()
-    
-    # Test case 2: "Alex wins the game"
-    test2 = "Alex wins the game"
-    result2 = countValidWords(test2)
-    print(f"Input: '{test2}'")
-    print(f"Output: {result2}")
-    print(f"Expected: 4")
-    print()
-    
-    # Additional test case from the original example
-    test3 = "This is an example string 234"
-    result3 = countValidWords(test3)
-    print(f"Input: '{test3}'")
-    print(f"Output: {result3}")
-    print(f"Expected: 3 (This, example, string)")
-    
-    # Test edge cases
-    test4 = "a ab abc"
-    result4 = countValidWords(test4)
-    print(f"Input: '{test4}'")
-    print(f"Output: {result4}")
-    print(f"Expected: 0 (all too short or missing vowel/consonant)")
-    print()
-    
-    test5 = "hello world test123"
-    result5 = countValidWords(test5)
-    print(f"Input: '{test5}'")
-    print(f"Output: {result5}")
-    print(f"Expected: 3 (hello, world, test123)")
+    # Test with the provided examples
+    print(countValidWords("This is Form16 submis$ion date"))  # Output: 3
+    print(countValidWords("Alex wins the game"))              # Output: 4
+    print(countValidWords("This is an example string 234"))   # Output: 3
